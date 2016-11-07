@@ -25,9 +25,12 @@ int main(int argc, char *argv[]) {
     CV_Assert(image.depth() == CV_8U);
 
     Point lightSource = getBrightestPoint(image);
+    int brightness = image.at<uchar>(lightSource.x, lightSource.y);
     double p = -getP(lightSource.y - center_col, lightSource.x - center_row, radius);
     double q = -getQ(lightSource.y - center_col, lightSource.x - center_row, radius);
     Point3d normal = getNormal(p, q);
+    cout << normal << endl;
+    scaleNormalWithBrightness(normal, brightness);
     cout << normal << endl;
   }
 

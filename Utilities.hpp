@@ -108,4 +108,11 @@ Point3d getNormal(double p, double q) {
   return Point3d(p, q, 1);
 }
 
+void scaleNormalWithBrightness(Point3d &normal, int brightness) {
+  double ratio = brightness / 255.0;
+  normal.x *= ratio;
+  normal.y *= ratio;
+  normal.z *= ratio;
+}
+
 #endif
