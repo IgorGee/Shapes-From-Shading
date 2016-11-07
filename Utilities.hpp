@@ -24,6 +24,14 @@ bool argsS2Check(int argc) {
   return true;
 }
 
+bool argsS3Check(int argc) {
+  if (argc != 8) {
+    cout << "usage: ./s3 <input directions> <image 1> <image 2> <image 3> <step> <threshold> <output>" << endl;
+    return false;
+  }
+  return true;
+}
+
 bool imageValidityCheck(Mat &image) {
   if (!image.data) {
     cout << "No image data " << endl;
