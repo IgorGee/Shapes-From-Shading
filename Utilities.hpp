@@ -15,6 +15,14 @@ bool argsS1Check(int argc) {
   return true;
 }
 
+bool argsS2Check(int argc) {
+  if (argc != 6) {
+    cout << "usage: ./s2 <input parameters file> <image 1> <image 2> <image 3> <output directions file>" << endl;
+    return false;
+  }
+  return true;
+}
+
 bool imageValidityCheck(Mat &image) {
   if (!image.data) {
     cout << "No image data " << endl;
