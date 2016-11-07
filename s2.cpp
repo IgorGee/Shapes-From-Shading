@@ -29,10 +29,12 @@ int main(int argc, char *argv[]) {
     double p = -getP(lightSource.y - center_col, lightSource.x - center_row, radius);
     double q = -getQ(lightSource.y - center_col, lightSource.x - center_row, radius);
     Point3d normal = getNormal(p, q);
-    cout << normal << endl;
     scaleNormalWithBrightness(normal, brightness);
-    cout << normal << endl;
+
+    directionsFile << normal.x << " " << normal.y << " " << normal.z << endl;
   }
+
+  directionsFile.close();
 
   return 0;
 }
