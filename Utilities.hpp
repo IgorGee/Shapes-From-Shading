@@ -80,4 +80,17 @@ vector<Point> getTRBLArrayOfSphere(Mat &image) {
   return TRBL;
 }
 
+Point getBrightestPoint(Mat &image) {
+  Point brightest = Point(0, 0);
+
+  for (int r = 0; r < image.rows; r++) {
+    for (int c = 0; c < image.cols; c++) {
+      if (image.at<uchar>(r, c) > image.at<uchar>(brightest.x, brightest.y))
+        brightest = Point(r, c);
+    }
+  }
+
+  return brightest;
+}
+
 #endif
