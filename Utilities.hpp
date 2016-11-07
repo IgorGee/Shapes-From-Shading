@@ -29,16 +29,44 @@ vector<Point> getTRBLArrayOfSphere(Mat &image) {
   Point bottom = Point(0, 0);
   Point left = Point(0, image.cols - 1);
 
+  int topEquiv = 0;
+  int rightEquiv = 0;
+  int bottomEquiv = 0;
+  int leftEquiv = 0;
+
   for (int r = 0; r < image.rows; r++) {
     for (int c = 0; c < image.cols; c++) {
       if (image.at<uchar>(r, c)) {
-        if (r < top.x) top = Point(r, c);       // if higher than top
-        if (c > right.y) right = Point(r, c);   // if more right
-        if (r > bottom.x) bottom = Point(r, c); // if lower than bottom
-        if (c < left.y) left = Point(r, c);     // if more left
+        if (r < top.x) {
+          top = Point(r, c);       // if higher than top
+          topEquiv = 0;
+        }
+        if (c > right.y) {
+           right = Point(r, c);   // if more right
+           rightEquiv = 0;
+         }
+        if (r > bottom.x) {
+           bottom = Point(r, c);  // if lower than bottom
+           bottomEquiv = 0;
+         }
+        if (c < left.y) {
+           left = Point(r, c);    // if more left
+           leftEquiv = 0;
+         }
+
+        // count equal values to correct for true coordinates
+        if (r == top.x) topEquiv++;
+        if (c == right.y) rightEquiv++;
+        if (r == bottom.x) bottomEquiv++;
+        if (c == left.y) leftEquiv++;
       }
     }
   }
+
+  top.y += topEquiv / 2;
+  right.x += rightEquiv / 2;
+  bottom.y += bottomEquiv / 2;
+  left.x += leftEquiv / 2;
 
   vector<Point> TRBL = {top, right, bottom, left};
   return TRBL;
