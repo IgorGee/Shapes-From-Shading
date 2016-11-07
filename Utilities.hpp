@@ -2,6 +2,7 @@
 #define UTILITIES_H
 
 #include <iostream>
+#include <cmath>
 #include <opencv2/opencv.hpp>
 
 using namespace std;
@@ -91,6 +92,20 @@ Point getBrightestPoint(Mat &image) {
   }
 
   return brightest;
+}
+
+double getP(int x, int y, int r) {
+  return -x / sqrt(pow(r, 2) - (pow(x, 2) + pow(y, 2)));
+}
+
+double getQ(int x, int y, int r) {
+  return -y / sqrt(pow(r, 2) - (pow(x, 2) + pow(y, 2)));
+}
+
+Point3d getNormal(double p, double q) {
+  p /= sqrt(pow(p, 2) + pow(q, 2) + 1);
+  q /= sqrt(pow(p, 2) + pow(q, 2) + 1);
+  return Point3d(p, q, 1);
 }
 
 #endif
