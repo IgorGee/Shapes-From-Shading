@@ -170,4 +170,16 @@ void getMatrixOfCofactors(double matrix[3][3]) {
   }
 }
 
+void swap(double matrix[3][3], int a, int b) {
+  double temp = matrix[a][b];
+  matrix[a][b] = matrix[b][a];
+  matrix[b][a] = temp;
+}
+
+void getAdjugate(double matrix[3][3]) {
+  for (int i = 0; i < 3; i++)
+    for (int j = i; j < 3; j++)
+      if (i != j) swap(matrix, i, j);
+}
+
 #endif

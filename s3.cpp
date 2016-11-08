@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
 
   getMatrixOfMinors(sourceMatrix, matrixOfMinors);
   getMatrixOfCofactors(matrixOfMinors);
+  getAdjugate(matrixOfMinors);
 
   vector<Mat> images;
   for (auto imageName : imageFiles) {
