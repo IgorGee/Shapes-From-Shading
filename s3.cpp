@@ -19,6 +19,9 @@ int main(int argc, char *argv[]) {
   int threshold = atoi(argv[6]);
   ofstream needleOutputFile(argv[7]);
 
+  auto sourceMatrix = new double[3][3];
+  fillSourceMatrix(sourceMatrix, directionsFile);
+
   vector<Mat> images;
   for (auto imageName : imageFiles) {
     Mat image = imread(imageName, CV_LOAD_IMAGE_GRAYSCALE);
