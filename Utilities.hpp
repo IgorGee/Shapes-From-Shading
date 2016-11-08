@@ -137,4 +137,31 @@ bool isVisisbleInAllImages(vector<Mat> images, int row, int col, int threshold) 
   return true;
 }
 
+double getDeterminant(double matrix[2][2]) {
+  return matrix[0][0] * matrix[0][3] - matrix[0][1] * matrix[0][2];
+}
+
+void getMinorMatrixAt(int minorI, int minorJ, double matrix[3][3], double minorMatrix[2][2]) {
+  int count = 0;
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      if (count == 4) break;
+      if (i != minorI && j != minorJ) {
+        minorMatrix[0][count] = matrix[i][j];
+        count++;
+      }
+    }
+  }
+}
+
+void getMatrixOfMinors(double matrix[3][3], double minors[3][3]) {
+  auto minorMatrix = new double[2][2];
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      getMinorMatrixAt(i, j, matrix, minorMatrix);
+      minors[i][j] = getDeterminant(minorMatrix);
+    }
+  }
+}
+
 #endif

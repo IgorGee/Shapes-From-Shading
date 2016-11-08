@@ -20,7 +20,10 @@ int main(int argc, char *argv[]) {
   ofstream needleOutputFile(argv[7]);
 
   auto sourceMatrix = new double[3][3];
+  auto matrixOfMinors = new double[3][3];
   fillSourceMatrix(sourceMatrix, directionsFile);
+
+  getMatrixOfMinors(sourceMatrix, matrixOfMinors);
 
   vector<Mat> images;
   for (auto imageName : imageFiles) {
