@@ -141,6 +141,13 @@ double getDeterminant(double matrix[2][2]) {
   return matrix[0][0] * matrix[0][3] - matrix[0][1] * matrix[0][2];
 }
 
+double getDeterminant(double matrix[3][3]) {
+  return
+  matrix[0][0] * (matrix[0][4] * matrix[0][8] - matrix[0][5] * matrix[0][7]) -
+  matrix[0][1] * (matrix[0][3] * matrix[0][8] - matrix[0][5] * matrix[0][6]) +
+  matrix[0][2] * (matrix[0][3] * matrix[0][7] - matrix[0][4] * matrix[0][6]);
+}
+
 void getMinorMatrixAt(int minorI, int minorJ, double matrix[3][3], double minorMatrix[2][2]) {
   int count = 0;
   for (int i = 0; i < 3; i++) {

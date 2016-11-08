@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
   auto matrixOfMinors = new double[3][3];
   fillSourceMatrix(sourceMatrix, directionsFile);
 
+  double sourceDeterminant = getDeterminant(sourceMatrix);
   getMatrixOfMinors(sourceMatrix, matrixOfMinors);
   getMatrixOfCofactors(matrixOfMinors);
   getAdjugate(matrixOfMinors);
