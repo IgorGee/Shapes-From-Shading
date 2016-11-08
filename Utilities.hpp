@@ -189,4 +189,10 @@ void getAdjugate(double matrix[3][3]) {
       if (i != j) swap(matrix, i, j);
 }
 
+void getInverseMatrix(double determinant, double matrix[3][3]) {
+  for (int i = 0; i < 9; i++) {
+    matrix[0][i] /= determinant;
+  }
+}
+
 #endif
