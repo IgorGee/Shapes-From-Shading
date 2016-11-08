@@ -20,14 +20,14 @@ int main(int argc, char *argv[]) {
   ofstream needleOutputFile(argv[7]);
 
   auto sourceMatrix = new double[3][3];
-  auto matrixOfMinors = new double[3][3];
+  auto inverseMatrix = new double[3][3];
   fillSourceMatrix(sourceMatrix, directionsFile);
 
   double sourceDeterminant = getDeterminant(sourceMatrix);
-  getMatrixOfMinors(sourceMatrix, matrixOfMinors);
-  getMatrixOfCofactors(matrixOfMinors);
-  getAdjugate(matrixOfMinors);
-  getInverseMatrix(sourceDeterminant, matrixOfMinors);
+  getMatrixOfMinors(sourceMatrix, inverseMatrix);
+  getMatrixOfCofactors(inverseMatrix);
+  getAdjugate(inverseMatrix);
+  getInverseMatrix(sourceDeterminant, inverseMatrix);
 
   vector<Mat> images;
   for (auto imageName : imageFiles) {
