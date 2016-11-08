@@ -164,4 +164,10 @@ void getMatrixOfMinors(double matrix[3][3], double minors[3][3]) {
   }
 }
 
+void getMatrixOfCofactors(double matrix[3][3]) {
+  for (int i = 1; i < 9; i+=2) {
+    matrix[0][i] *= -1;
+  }
+}
+
 #endif

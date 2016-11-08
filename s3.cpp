@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
   fillSourceMatrix(sourceMatrix, directionsFile);
 
   getMatrixOfMinors(sourceMatrix, matrixOfMinors);
+  getMatrixOfCofactors(matrixOfMinors);
 
   vector<Mat> images;
   for (auto imageName : imageFiles) {
