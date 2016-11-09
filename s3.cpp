@@ -11,6 +11,8 @@ using namespace std;
 
 
 int main(int argc, char *argv[]) {
+  const int NEEDLE_LENGTH = 10;
+
   if (!argsS3Check(argc)) return -1;
 
   ifstream directionsFile(argv[1]);
@@ -36,6 +38,33 @@ int main(int argc, char *argv[]) {
     CV_Assert(image.depth() == CV_8U);
     images.push_back(image);
   }
+
+  Mat needleImage = images[0].clone();
+  auto intensityMatrix = new double[3];
+  Point3d normal;
+
+  for (int r = NEEDLE_LENGTH; r < needleImage.rows - NEEDLE_LENGTH; r += step) {
+    for (int c = NEEDLE_LENGTH; c < needleImage.cols - NEEDLE_LENGTH; c += step) {
+      bool inAll3 = true;
+      for (auto image : images)
+        if (image.at<uchar>(r, c) < threshold) inAll3 = false;
+      if (!inAll3) continue;
+      fillIntensityMatrix(intensityMatrix, images, r, c);
+      getNormal(normal, inverseMatrix, intensityMatrix);
+      double newR = r + normal.x * 5 * normal.z;
+      double newC = c + normal.y * 5 * normal.z;
+      line(needleImage, Point(c, r), Point(newC, newR), 255);
+      markBlackWithWhiteCircle(needleImage, r, c);
+    }
+  }
+
+  namedWindow("Original Image", WINDOW_AUTOSIZE);
+  namedWindow("Needle Image", WINDOW_AUTOSIZE);
+
+  imshow("Original Image", images[0]);
+  imshow("Needle Image", needleImage);
+
+  waitKey(0);
 
   return 0;
 }

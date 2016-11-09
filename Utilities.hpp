@@ -195,4 +195,29 @@ void getInverseMatrix(double determinant, double matrix[3][3]) {
   }
 }
 
+void markBlackWithWhiteCircle(Mat &image, int row, int col) {
+  image.at<uchar>(row, col) = 0;
+  image.at<uchar>(row-1, col) = 255;
+  image.at<uchar>(row, col+1) = 255;
+  image.at<uchar>(row+1, col) = 255;
+  image.at<uchar>(row, col-1) = 255;
+}
+
+void fillIntensityMatrix(double matrix[3], vector<Mat> images, int row, int col) {
+  for (int i = 0; i < 3; i++)
+    matrix[i] = images[i].at<uchar>(row, col) / 255.0;
+}
+
+void getNormal(Point3d &normal, double inverseMatrix[3][3], double intensityMatrix[3]) {
+  normal.x = inverseMatrix[0][0]*intensityMatrix[0] +
+             inverseMatrix[0][1]*intensityMatrix[1] +
+             inverseMatrix[0][2]*intensityMatrix[2];
+  normal.y = inverseMatrix[1][0]*intensityMatrix[0] +
+             inverseMatrix[1][1]*intensityMatrix[1] +
+             inverseMatrix[1][2]*intensityMatrix[2];
+  normal.z = inverseMatrix[2][0]*intensityMatrix[0] +
+             inverseMatrix[2][1]*intensityMatrix[1] +
+             inverseMatrix[2][2]*intensityMatrix[2];
+}
+
 #endif
