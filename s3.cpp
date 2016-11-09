@@ -19,7 +19,6 @@ int main(int argc, char *argv[]) {
   vector<string> imageFiles = {argv[2], argv[3], argv[4]};
   int step = atoi(argv[5]);
   int threshold = atoi(argv[6]);
-  ofstream needleOutputFile(argv[7]);
 
   auto sourceMatrix = new double[3][3];
   auto inverseMatrix = new double[3][3];
@@ -65,6 +64,9 @@ int main(int argc, char *argv[]) {
   imshow("Needle Image", needleImage);
 
   waitKey(0);
+
+  vector<int> params = { CV_IMWRITE_PXM_BINARY };
+  imwrite(argv[7], needleImage, params);
 
   return 0;
 }
