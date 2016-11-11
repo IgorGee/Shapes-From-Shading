@@ -26,8 +26,8 @@ int main(int argc, char *argv[]) {
 
     Point lightSource = getBrightestPoint(image);
     int brightness = image.at<uchar>(lightSource.x, lightSource.y);
-    double p = -getP(lightSource.y - center_col, lightSource.x - center_row, radius);
-    double q = -getQ(lightSource.y - center_col, lightSource.x - center_row, radius);
+    double p = -getP(lightSource.x - center_row, lightSource.y - center_col, radius);
+    double q = -getQ(lightSource.x - center_row, lightSource.y - center_col, radius);
     Point3d normal = getNormal(p, q);
     scaleNormalWithBrightness(normal, brightness);
 
