@@ -225,6 +225,11 @@ void getNormal(Point3d &normal, double inverseMatrix[3][3], double intensityMatr
   normal.z = inverseMatrix[2][0]*intensityMatrix[0] +
              inverseMatrix[2][1]*intensityMatrix[1] +
              inverseMatrix[2][2]*intensityMatrix[2];
+
+  double length = sqrt(pow(normal.x, 2) + pow(normal.y, 2) + pow(normal.z, 2));
+  normal.x /= length;
+  normal.y /= length;
+  normal.z /= length;
 }
 
 #endif
