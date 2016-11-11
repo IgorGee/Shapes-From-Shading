@@ -126,10 +126,9 @@ Point3d getNormal(double p, double q) {
 }
 
 void scaleNormalWithBrightness(Point3d &normal, int brightness) {
-  double ratio = brightness / 255.0;
-  normal.x *= ratio;
-  normal.y *= ratio;
-  normal.z *= ratio;
+  normal.x *= brightness;
+  normal.y *= brightness;
+  normal.z *= brightness;
 }
 
 void fillSourceMatrix(double matrix[3][3], ifstream &directionsFile) {
@@ -213,7 +212,7 @@ void markBlackWithWhiteCircle(Mat &image, int row, int col) {
 
 void fillIntensityMatrix(double matrix[3], vector<Mat> images, int row, int col) {
   for (int i = 0; i < 3; i++)
-    matrix[i] = images[i].at<uchar>(row, col) / 255.0;
+    matrix[i] = images[i].at<uchar>(row, col);
 }
 
 void getNormal(Point3d &normal, double inverseMatrix[3][3], double intensityMatrix[3]) {
