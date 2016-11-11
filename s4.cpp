@@ -44,9 +44,14 @@ int main(int argc, char *argv[]) {
       bool inAll3 = true;
       for (auto image : images)
         if (image.at<uchar>(r, c) < threshold) inAll3 = false;
-      if (!inAll3) continue;
+      if (!inAll3) {
+        albedoImage.at<uchar>(r, c) = 0;
+        continue;
+      }
       fillIntensityMatrix(intensityMatrix, images, r, c);
-      getNormal(normal, inverseMatrix, intensityMatrix);
+      double albedo = getAlbedo(normal, inverseMatrix, intensityMatrix);
+      cout << albedo << endl;
+      albedoImage.at<uchar>(r, c) = albedoImage.at<uchar>(r,c)/2 * albedo;
     }
   }
 

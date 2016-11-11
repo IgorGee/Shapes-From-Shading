@@ -232,4 +232,19 @@ void getNormal(Point3d &normal, double inverseMatrix[3][3], double intensityMatr
   normal.z /= length;
 }
 
+double getAlbedo(Point3d &normal, double inverseMatrix[3][3], double intensityMatrix[3]) {
+  normal.x = inverseMatrix[0][0]*intensityMatrix[0] +
+             inverseMatrix[0][1]*intensityMatrix[1] +
+             inverseMatrix[0][2]*intensityMatrix[2];
+  normal.y = inverseMatrix[1][0]*intensityMatrix[0] +
+             inverseMatrix[1][1]*intensityMatrix[1] +
+             inverseMatrix[1][2]*intensityMatrix[2];
+  normal.z = inverseMatrix[2][0]*intensityMatrix[0] +
+             inverseMatrix[2][1]*intensityMatrix[1] +
+             inverseMatrix[2][2]*intensityMatrix[2];
+
+  double length = sqrt(pow(normal.x, 2) + pow(normal.y, 2) + pow(normal.z, 2));
+  return length;
+}
+
 #endif
