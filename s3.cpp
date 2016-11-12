@@ -50,8 +50,8 @@ int main(int argc, char *argv[]) {
       if (!inAll3) continue;
       fillIntensityMatrix(intensityMatrix, images, r, c);
       getNormal(normal, inverseMatrix, intensityMatrix);
-      double newR = r + normal.x * 10;
-      double newC = c + normal.y * 10;
+      double newR = r + normal.x * NEEDLE_LENGTH;
+      double newC = c + normal.y * NEEDLE_LENGTH;
       line(needleImage, Point(c, r), Point(newC, newR), 255);
       markBlackWithWhiteCircle(needleImage, r, c);
     }
