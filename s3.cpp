@@ -52,7 +52,6 @@ int main(int argc, char *argv[]) {
       getNormal(normal, inverseMatrix, intensityMatrix);
       double newR = r + normal.x * 10;
       double newC = c + normal.y * 10;
-      // I have no idea why columns and rows are reversed...
       line(needleImage, Point(c, r), Point(newC, newR), 255);
       markBlackWithWhiteCircle(needleImage, r, c);
     }
